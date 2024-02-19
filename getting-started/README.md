@@ -26,6 +26,26 @@
 - `include`와 `exclude`: 컴파일 과정에 포함되거나 제외될 파일을 지정합니다.
 - `lib`: 컴파일에 포함될 라이브러리 파일 목록을 지정합니다.
 
+```typescript
+{
+  "compilerOptions": {
+    "target": "es5",                          // 컴파일된 JavaScript의 ECMAScript 버전
+    "module": "commonjs",                     // 사용할 모듈 시스템
+    "strict": true,                           // 모든 엄격한 타입 검사 옵션 활성화
+    "esModuleInterop": true,                  // CommonJS와 ES 모듈 간 호환성 향상
+    "outDir": "./dist",                       // 컴파일된 파일을 출력할 디렉터리
+    "sourceMap": true,                        // 소스맵 파일 생성 (디버깅 용이)
+    "baseUrl": "./",                          // 비상대적 모듈 이름을 해석할 기준 디렉터리
+    "paths": {                                // `baseUrl`을 기준으로 모듈 이름을 재지정
+      "*": ["node_modules/*", "src/types/*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"]  // 컴파일에 포함될 라이브러리 파일 목록
+  },
+  "include": ["src/**/*"],                    // 컴파일 과정에 포함될 파일 또는 디렉터리
+  "exclude": ["node_modules", "dist"]         // 컴파일에서 제외될 파일 또는 디렉터리
+}
+```
+
 ### 프로젝트 참조
 
 프로젝트 참조를 사용하면 TypeScript 프로젝트의 다른 부분 간의 의존성을 관리할 수 있습니다. 이는 여러 개의 작은 프로젝트로 나뉜 큰 프로젝트에 유용합니다.
