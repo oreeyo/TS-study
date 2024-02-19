@@ -15,3 +15,6 @@ function __sum(a:number, b:number):number {
     return a+b;
 }
 
+// js와는 다르게 정의되지 않은 파라미터들을 넣을 때에는 ts에서 에러를 발생시켜준다.
+_sum(10,20,30,40)
+
