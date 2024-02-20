@@ -151,6 +151,7 @@ let myDict: StringDictionary = {
 
 
 <br>
+
 ## 3. 타입스크립트에서 Interface의 Indexing의 활용 🔍
 
 Interface의 Indexing은 API 응답, 설정 객체 등 다양한 곳에서 유용하게 활용됩니다. 
