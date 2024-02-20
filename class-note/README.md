@@ -91,4 +91,39 @@ interface SearchFunc {
 `interface`는 TypeScript에서 타입 체크를 위한 강력한 도구입니다. 
 객체의 구조를 명확하게 정의하고, 코드의 안정성을 높이며, 개발 과정에서의 오류를 줄일 수 있습니다.
 
+<br>
+<br>
+# TypeScript에서 Interface의 Indexing 📚
 
+TypeScript는 강력한 타입 시스템을 가진 JavaScript의 상위 집합입니다. TypeScript의 핵심 기능 중 하나는 개발자가 명시적으로 타입을 정의할 수 있게 하는 `interface`입니다. `interface`를 사용하면 객체의 구조를 정의할 수 있으며, 이를 통해 더 안정적이고 유지보수하기 쉬운 코드를 작성할 수 있습니다. 특히, `interface`의 indexing 기능은 객체의 속성 이름과 타입을 동적으로 정의할 수 있게 해줍니다.
+
+## 1. 타입스크립트에서 Interface의 Indexing의 개념 🧐
+
+Interface의 Indexing은 `index signature`를 사용하여 객체의 모든 속성이 특정 타입을 가지도록 강제합니다. 이는 미리 정의된 속성 이름이 아닌, 동적 속성 이름에 대해 타입을 지정할 수 있게 해줍니다.
+
+## 2. 타입스크립트에서 Interface의 Indexing의 예시 📝
+
+```typescript
+interface StringDictionary {
+  [key: string]: string;
+}
+
+let myDict: StringDictionary = {
+  name: "John Doe",
+  email: "john@example.com"
+};
+```
+
+이 예시에서 `StringDictionary` 인터페이스는 문자열 키에 대해 문자열 값을 가지는 객체를 정의합니다. 이를 통해 다양한 속성을 동적으로 추가할 수 있습니다.
+
+두번째 예시에서는 string 값을 대입해야하는데, number 값을 대입해보겠다.
+
+![alt text](image.png)
+
+보다시피 Error 가 뜬다.
+
+
+
+## 3. 타입스크립트에서 Interface의 Indexing의 활용 🔍
+
+Interface의 Indexing은 API 응답, 설정 객체 등 다양한 곳에서 유용하게 활용됩니다. 예를 들어, 서로 다른 키와 값을 가진 객체를 유연하게 처리할 수 있습니다. 이 기능을 사용함으로써 TypeScript 코드의 유연성과 재사용성이 향상됩니다.
