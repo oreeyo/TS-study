@@ -61,6 +61,16 @@ interface Employee extends Person {
   employeeId: number;
 }
 ```
+<br>
+
+밑의 이미지를 보면, 
+상속받은 인터페이스의 요소들을 다 사용해야만 한다.
+일부만 사용해서는 인터페이스에 어긋난다.
+
+![alt text](image-2.png)
+
+<br>
+<br>
 
 ## 🔍 선택적 속성과 읽기 전용 속성
 
@@ -123,7 +133,103 @@ let myDict: StringDictionary = {
 보다시피 타입 에러 알림이 뜹니다.
 
 
-
+<br>
 ## 3. 타입스크립트에서 Interface의 Indexing의 활용 🔍
 
-Interface의 Indexing은 API 응답, 설정 객체 등 다양한 곳에서 유용하게 활용됩니다. 예를 들어, 서로 다른 키와 값을 가진 객체를 유연하게 처리할 수 있습니다. 이 기능을 사용함으로써 TypeScript 코드의 유연성과 재사용성이 향상됩니다.
+Interface의 Indexing은 API 응답, 설정 객체 등 다양한 곳에서 유용하게 활용됩니다. 
+예를 들어, 서로 다른 키와 값을 가진 객체를 유연하게 처리할 수 있습니다. 
+이 기능을 사용함으로써 TypeScript 코드의 유연성과 재사용성이 향상됩니다.
+
+
+Interface의 Indexing을 활용하는 구체적인 예시를 보여드리겠습니다. 
+이 예시에서는 API 응답을 처리하는 상황을 가정해보겠습니다. 
+API에서 반환된 데이터는 다양한 키와 값을 가질 수 있으며, 이를 유연하게 처리하고자 합니다.
+<br>
+
+## TypeScript Interface Indexing 활용 예시: API 응답 처리 📝
+
+API로부터 받은 응답 데이터의 구조가 다양할 때, 
+우리는 Interface의 Indexing을 사용하여 이를 효과적으로 처리할 수 있습니다.
+
+```typescript
+interface ApiResponse {
+  [key: string]: string | number | boolean | object;
+}
+
+function handleApiResponse(response: ApiResponse) {
+  // response 객체의 각 키와 값을 처리
+  for (const key in response) {
+    const value = response[key];
+    console.log(`${key}: ${value}`);
+    // 여기서 각 값의 타입에 따라 필요한 처리를 수행할 수 있습니다.
+  }
+}
+
+// 예를 들어, 다음과 같은 API 응답을 받았다고 가정합니다.
+const apiResponse: ApiResponse = {
+  userId: 1,
+  userName: "JohnDoe",
+  verified: true,
+  address: {
+    street: "123 Main St",
+    city: "Anytown",
+  },
+};
+
+// 응답 처리 함수 호출
+handleApiResponse(apiResponse);
+```
+<br>
+이 예시에서는 ApiResponse 인터페이스를 사용해 API 응답 객체의 구조를 유연하게 정의했습니다.
+인터페이스의 Index Signature [key: string]: string | number | boolean | object; 는 
+응답 객체가 문자열 키를 가지며, 
+그 값이 문자열, 숫자, 불리언, 객체 중 하나가 될 수 있음을 나타냅니다.
+<br>
+handleApiResponse 함수는 이러한 응답 객체를 받아, 각 키와 값을 순회하며 필요한 작업을 수행합니다. 
+이 방법을 통해, 우리는 서로 다른 형태의 API 응답 데이터를 효과적으로 처리할 수 있습니다.
+Interface의 Indexing을 활용함으로써, 
+TypeScript 코드의 유연성과 재사용성을 크게 향상시킬 수 있습니다.
+
+<br>
+<br>
+
+# TypeScript Interface의 Dictionary Pattern 📖
+
+TypeScript에서 Interface를 사용하는 다양한 방법 중 하나는 Dictionary Pattern입니다. 
+이 패턴은 객체의 속성을 유연하게 정의할 수 있게 해주며,
+특정 형태의 키와 값을 갖는 객체를 정의하는 데 유용합니다.
+
+## Dictionary Pattern의 개념 🧠
+
+Dictionary Pattern은 객체가 미리 알 수 없는 여러 키를 가지고 있을 때 유용합니다.
+각 키는 같은 타입의 값을 가지며, 
+이러한 특성은 동적 속성을 가진 객체를 타입 안전하게 처리하는 데 도움을 줍니다.
+
+## Dictionary Pattern 예시 🌟
+
+```typescript
+interface UserDictionary {
+  [key: string]: string;
+}
+
+const users: UserDictionary = {
+  'john.doe': 'John Doe',
+  'jane.doe': 'Jane Doe'
+};
+
+// 사용자 이름에 접근하기
+console.log(users['john.doe']); // John Doe
+```
+
+이 예시에서 `UserDictionary` 인터페이스는 문자열 키와 문자열 값을 가지는 객체를 정의합니다.
+이를 통해 사용자 ID를 키로 하고 
+사용자 이름을 값으로 하는 사용자 사전을 생성할 수 있습니다.
+
+<br>
+두번째 예시를 보면,
+
+![alt text](image-1.png)
+
+해당 이미지에서 obj_ 의 값들은 전부 RegExp 타입인데,
+string을 대입해주려하니 에러가 출력되는게 보입니다.
+이와같이 딕셔너리 패턴은 특정한 형태의 키와 값의 타입을 지정하는데 유용합니다.
