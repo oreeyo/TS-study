@@ -116,11 +116,11 @@ let myDict: StringDictionary = {
 
 이 예시에서 `StringDictionary` 인터페이스는 문자열 키에 대해 문자열 값을 가지는 객체를 정의합니다. 이를 통해 다양한 속성을 동적으로 추가할 수 있습니다.
 
-두번째 예시에서는 string 값을 대입해야하는데, number 값을 대입해보겠다.
+두번째 예시에서는 string 값을 대입해야하는데, number 값을 대입해보겠습니다.
 
 ![alt text](image.png)
 
-보다시피 Error 가 뜬다.
+보다시피 타입 에러 알림이 뜹니다.
 
 
 
