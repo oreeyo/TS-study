@@ -455,3 +455,109 @@ let employee: Person = { name: "John Doe", age: 32, employeeId: 1234 };
 이 예시에서 볼 수 있듯이,  
 유니온 타입은 더 넓은 범위의 타입을 허용하는 반면,  
 인터섹션 타입은 더 구체적이고 제한된 타입을 생성합니다.
+<br>
+<br>
+
+# TypeScript에서 Enum 사용하기 🚀
+
+TypeScript의 `enum`은 열거형을 나타내는 키워드로,  
+숫자 또는 문자열 값의 집합에 더 읽기 쉽고 관리하기 쉬운 이름을 부여할 수 있습니다.  
+
+## 1. Enum에 대한 개념 📘
+
+`enum`은 명명된 상수의 집합을 정의할 때 사용됩니다.  
+이를 통해 코드의 가독성과 유지보수성을 높일 수 있으며, 오류의 가능성을 줄일 수 있습니다.  
+
+## 2. 숫자형 Enum에 대한 설명과 예시 🔢
+
+숫자형 `enum`은 각 항목이 숫자로 자동 할당되는 열거형입니다.  
+첫 번째 항목은 기본적으로 `0`부터 시작하고, 이후 항목은 1씩 증가합니다.  
+명시적으로 값을 할당할 수도 있습니다.  
+
+### 예시:
+
+```typescript
+enum Direction {
+    Up = 1,
+    Down,
+    Left,
+    Right
+}
+
+console.log(Direction.Up); // 1
+console.log(Direction.Left); // 3
+```
+
+## 3. 문자형 Enum에 대한 설명과 예시 📝
+
+문자형 `enum`은 각 항목이 문자열 값으로 할당되는 열거형입니다.  
+각 항목에 대해 명시적으로 값을 지정해야 합니다.  
+
+### 예시:
+
+```typescript
+enum Response {
+    No = 'NO',
+    Yes = 'YES',
+}
+
+console.log(Response.No); // 'NO'
+```
+
+## 4. Enum의 활용 사례 🌟
+
+`enum`은 다음과 같은 상황에서 유용하게 사용될 수 있습니다.  
+
+- 정해진 범위의 값을 갖는 변수를 선언할 때
+- 설정 값이나 상태 코드와 같이 명확한 명명이 필요한 상수 집합을 정의할 때  
+
+`enum`을 사용함으로써 코드의 가독성을 높이고, 실수로 잘못된 값을 할당하는 것을 방지할 수 있습니다.  
+
+### 정해진 범위의 값을 갖는 변수를 선언할 때
+enum을 사용하면, 특정 범위 내의 값만을 변수로 설정할 수 있습니다.  
+예를 들어, 주문 상태를 나타내는 상수 집합을 정의할 때 enum을 사용할 수 있습니다.
+
+```typescript
+enum OrderStatus {
+    Pending,
+    Shipped,
+    Delivered,
+    Returned,
+}
+
+function updateOrderStatus(status: OrderStatus) {
+    console.log(`Order status updated to: ${OrderStatus[status]}`);
+}
+
+updateOrderStatus(OrderStatus.Shipped); // "Order status updated to: Shipped"
+```  
+<br>
+
+### 설정 값이나 상태 코드와 같이 명확한 명명이 필요한 상수 집합을 정의할 때
+시스템의 다양한 설정 옵션 또는 상태 코드를 나타내는 데 enum을 사용할 수 있습니다.  
+각각의 enum 멤버에 명확한 이름을 부여함으로써,  
+코드 내에서 이러한 값들을 더 쉽게 식별하고 사용할 수 있습니다.  
+
+```typescript
+enum ResponseCode {
+    Success = 200,
+    NotFound = 404,
+    ServerError = 500,
+}
+
+function fetchResource(url: string): ResponseCode {
+    // 여기서는 단순화를 위해 항상 Success를 반환한다고 가정합니다.
+    console.log(`Fetching resource from: ${url}`);
+    return ResponseCode.Success;
+}
+
+const response = fetchResource('https://example.com/api/data');
+if (response === ResponseCode.Success) {
+    console.log('Resource fetched successfully.');
+} else {
+    console.log('Failed to fetch resource.');
+}
+```  
+
+이 예시들에서 enum은 코드의 의도를 명확히 전달하고,  
+유효한 값의 범위를 제한하여 프로그램의 안정성을 향상시키는 데 도움이 됩니다.
