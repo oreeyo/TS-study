@@ -21,12 +21,12 @@ interface Developer<T> {
 const tony: Developer<number> = { name: 'tony', age: 100 };
 
 // 제네릭 타입 제한 - 구체적인 타입
-function getNumberAndArray<T>(value: T): T {
+function getNumberAndArray<T extends {length() : number}>(value: T): T {
   value.length; // X
   return value;
 }
 
-function getNumberAndArray<T>(value: T[]): T[] {
+function _getNumberAndArray<T>(value: T[]): T[] {
   value.length; // O
   return value;
 }
